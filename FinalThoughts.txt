@@ -1,0 +1,24 @@
+With the info given in the code challenge I decided to do 2 solutions to this problem.
+1. A C# solution - please see Program.cs
+2. A JavaScript solution - please see index.html
+
+
+I first started out by creating a JSON object to store my marble data in.
+Generally speaking, the payload will be retrieved from an API or a Database call.
+Once we have the data we then cast our JSON data to a List that will be used throughout the program.
+
+I then created a list of marbles based on color. I did this to easily add the marbles from their original list into the appropriate color list.
+I then created a final list that will collect the colored marbles in the ROYGBIV color order.
+
+I then looped through each marble checking to make sure they meet the weight and palindrome requirement.
+If the marble meets both of them we then place it in it appropriate color list.
+Once all the marbles have been sorted into their color list I then added them to the final ROYGBIV list in the correct order.
+
+To complete this task I created a class to house the variables and methods to do the workload of checking each marble.
+You could build upon the class to additional things to the marbles if needed.
+THe C# class has methods that can be expanded/reused and the main program would would be operating as an API entry point
+
+The solution has a test case in it commented out.
+You can see that I ran this code creating a loop to loop through the original marbles and randomly add on of those marbles one at a time until we hit 1 million marbles.
+After running the code with the original 11 marbles and the 1 million marbles...
+There is no notable time difference to complete the operation.

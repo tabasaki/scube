@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    let marbles = [
+        { id: 1, color: "blue", name: "Bob", weight: 0.5 },
+        { id: 2, color: "red", name: "John Smith", weight: 0.25 },
+        { id: 3, color: "violet", name: "Bob O'Bob", weight: 0.5 },
+        { id: 4, color: "indigo", name: "Bob Dad-Bob", weight: 0.75 },
+        { id: 5, color: "yellow", name: "John", weight: 0.5 },
+        { id: 6, color: "orange", name: "Bob", weight: 0.25 },
+        { id: 7, color: "blue", name: "Smith", weight: 0.5 },
+        { id: 8, color: "blue", name: "Bob", weight: 0.25 },
+        { id: 9, color: "green", name: "Bobb Ob", weight: 0.75 },
+        { id: 10, color: "blue", name: "Bob", weight: 0.5 },
+        { id: 11, color: "orange", name: "B", weight: 0.65 }
+    ];
+
+    // Test Case - duplicate marbles to reach one million marbles
+    // No notable difference in time to get result back compared to the original marble list of 11 marbles
+    //while (marbles.length < 1000000) {
+    //    marbles.forEach((marble) => {
+    //        marbles.push(marble);
+    //    });
+    //}
+    console.log(marbles);
+
+    let redMarbles = [];
+    let orangeMarbles = [];
+    let yellowMarbles = [];
+    let greenMarbles = [];
+    let blueMarbles = [];
+    let indigoMarbles = [];
+    let violetMarbles = [];
+
+    let roygbivMarbles = [];
+
+    marbles.forEach((marble) => {
+        if (checkWeight(marble.weight) && checkPalindrome(marble.name)) {
+            switch (marble.color) {
+                case 'red':
+                    redMarbles.push(marble);
+                    break;
+                case 'orange':
+                    orangeMarbles.push(marble);
+                    break;
+                case 'yellow':
+                    yellowMarbles.push(marble);
+                    break;
+                case 'green':
+                    greenMarbles.push(marble);
+                    break;
+                case 'blue':
+                    blueMarbles.push(marble);
+                    break;
+                case 'indigo':
+                    indigoMarbles.push(marble);
+                    break;
+                case 'violet':
+                    violetMarbles.push(marble);
+                    break;
+                default:
+                    //do nothing cause this color is not in roygbiv
+            }
+        }
+    });
+
+    //FUNCTIONS
+    function checkWeight(weight) {
+        if (weight >= 0.5) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkPalindrome(name) {
+        //convert name into lowercase and remove all non-alphanumeric characters
+        let tempName = name.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
+        let tempCount = 0;
+
+        //check if name is null or empty
+        if (tempName === "") {
+            return false;
+        }
+        //check if name length is odd or even
+        if ((tempName.length) % 2 === 0) {
+            tempCount = tempName.length / 2;
+        }
+        else {
+            //if name length is 1 then it is a palindrome
+            if (tempName.length === 1) {
+                return true;
+            }
+            //if name length is odd then ignore the middle character
+            else {
+                tempCount = (tempName.length - 1) / 2;
+            }
+        }
+
+        // need the index of the character position so use for instead of forEach
+        for (let b = 0; b < tempCount; b++) {
+            if (tempName[b] != tempName.charAt(tempName.length - (b + 1))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Populate final marble array with the color marble arrays
+    roygbivMarbles = roygbivMarbles.concat(redMarbles, orangeMarbles, yellowMarbles, greenMarbles, blueMarbles, indigoMarbles, violetMarbles);
+    console.log(roygbivMarbles);
+</script>
